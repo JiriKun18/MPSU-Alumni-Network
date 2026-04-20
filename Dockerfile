@@ -21,4 +21,4 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "php artisan package:discover --ansi && php artisan serve --host=0.0.0.0 --port=10000"]
+CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-10000} -t public"]
