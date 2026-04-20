@@ -1,0 +1,18 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "cleanup-binaries",
+			"type": "shell",
+			"command": "powershell",
+			"args": [
+				"-NoProfile",
+				"-ExecutionPolicy",
+				"Bypass",
+				"-Command",
+				"Remove-Item -LiteralPath 'Composer-Setup.exe','deplister.exe' -Force -ErrorAction SilentlyContinue"
+			],
+			"isBackground": false
+		}
+	]
+}

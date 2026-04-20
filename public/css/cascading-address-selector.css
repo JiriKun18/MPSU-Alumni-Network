@@ -1,0 +1,346 @@
+/**
+ * Cascading Address Selector Styles
+ * Includes loading states, validation, and complete address display
+ */
+
+/* Address selector form section */
+.address-selector-section {
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.address-selector-section h5 {
+    color: var(--primary-color);
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.address-selector-section h5 i {
+    font-size: 1.1em;
+}
+
+/* Address hierarchy row */
+.address-hierarchy-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.address-field-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.address-field-group label {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.address-field-group label .required {
+    color: #dc3545;
+}
+
+.address-field-group .form-select {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+.address-field-group .form-select:hover:not(:disabled) {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.address-field-group .form-select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(51, 65, 85, 0.1);
+}
+
+/* Loading state */
+.address-field-group .form-select.is-loading {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37'%3e%3ccircle cx='12' cy='12' r='10' stroke-width='2' opacity='0.3'/%3e%3cpath d='M12 2a10 10 0 0 1 10 10' stroke-width='2' stroke-linecap='round' opacity='0.8'/%3e%3c/svg%3e");
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    padding-right: 35px;
+    opacity: 0.7;
+    cursor: wait;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.address-field-group .form-select.is-loading:after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--accent-gold);
+    border-radius: 50%;
+    border-top-color: transparent;
+    margin-left: 6px;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Disabled state */
+.address-field-group .form-select:disabled {
+    background-color: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.address-field-group .form-select.is-disabled {
+    border-color: #ddd;
+    background-color: #f5f5f5;
+}
+
+/* Error state */
+.address-field-group .form-select.is-error {
+    border-color: #dc3545;
+    background-color: #fff5f5;
+}
+
+.address-field-group .form-select.is-error:focus {
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.1);
+}
+
+/* Success/Ready state */
+.address-field-group .form-select.is-ready {
+    border-color: var(--accent-gold);
+    background-color: #fff;
+}
+
+/* Address helper text */
+.address-field-group .form-text {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+/* Alert messages */
+.address-field-group .alert-sm {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+.alert-danger.alert-sm {
+    background-color: #fff5f5;
+    border: 1px solid #fcc2d7;
+    color: #842029;
+}
+
+.alert-info.alert-sm {
+    background-color: #e7f3ff;
+    border: 1px solid #b6e3ff;
+    color: #084298;
+}
+
+/* Address display/summary */
+.address-display {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.05) 100%);
+    border-left: 4px solid var(--accent-gold);
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 40px;
+}
+
+.address-display.incomplete {
+    border-left-color: #ffc107;
+    color: #856404;
+}
+
+.address-display.complete {
+    border-left-color: var(--accent-gold);
+    color: var(--primary-color);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+}
+
+/* Validation messages */
+.address-validation {
+    margin-top: 12px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: none;
+    align-items: center;
+    gap: 8px;
+}
+
+.address-validation.show {
+    display: flex;
+}
+
+.address-complete-msg {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.address-complete-msg i {
+    color: #28a745;
+    font-size: 1.1em;
+}
+
+.address-incomplete-msg {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
+
+.address-incomplete-msg i {
+    color: #ffc107;
+    font-size: 1.1em;
+}
+
+/* Responsive grid */
+@media (max-width: 768px) {
+    .address-hierarchy-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .address-selector-section {
+        padding: 15px;
+    }
+}
+
+/* Loading spinner for individual fields */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.address-field-group.loading-field {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Hierarchy indicator */
+.hierarchy-indicator {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.hierarchy-indicator .required-marker {
+    width: 4px;
+    height: 4px;
+    background-color: #dc3545;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.hierarchy-indicator.optional {
+    color: #bbb;
+}
+
+/* Step indicator for address levels */
+.address-hierarchy-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 8px;
+}
+
+.step-indicator {
+    flex: 1;
+    height: 4px;
+    background-color: #e9ecef;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.step-indicator.active {
+    background-color: var(--accent-gold);
+}
+
+.step-indicator.completed {
+    background-color: #28a745;
+}
+
+.step-indicator .step-label {
+    font-size: 0.7rem;
+    color: #666;
+    text-align: center;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Notes and hints */
+.address-notes {
+    background-color: #f0f8ff;
+    border-left: 3px solid #0066cc;
+    padding: 12px 15px;
+    margin-top: 15px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #0066cc;
+}
+
+.address-notes strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* Submit button state based on address completion */
+button[type="submit"].disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: #ccc;
+    border-color: #999;
+}
+
+button[type="submit"].disabled:hover {
+    background-color: #ccc;
+    border-color: #999;
+}
+
+/* Success animation */
+@keyframes slideInSuccess {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.address-complete-msg.show {
+    animation: slideInSuccess 0.3s ease;
+}

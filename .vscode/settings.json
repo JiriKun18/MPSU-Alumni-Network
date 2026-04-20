@@ -1,0 +1,14 @@
+{
+    "css.validate": false,
+    "scss.validate": false,
+    "less.validate": false,
+    "[blade]": {
+        "css.validate": false
+    },
+    "emmet.includeLanguages": {
+        "blade": "html"
+    },
+    "files.associations": {
+        "*.blade.php": "blade"
+    }
+}

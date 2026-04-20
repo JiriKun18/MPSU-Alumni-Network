@@ -1,0 +1,10 @@
+public function upcoming()
+{
+    $upcomingEvents = Event::where('event_date', '>=', now())
+        ->orderBy('event_date', 'asc')
+        ->paginate(10);
+
+    return view('events.upcoming', [
+        'events' => $upcomingEvents
+    ]);
+}
