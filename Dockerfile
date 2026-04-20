@@ -21,4 +21,4 @@ RUN mkdir -p storage/framework/cache storage/framework/sessions storage/framewor
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-10000} -t public"]
+CMD ["sh", "-c", "php artisan config:clear || true; php artisan route:clear || true; php artisan view:clear || true; php artisan migrate --force || true; php -S 0.0.0.0:${PORT:-10000} -t public"]
